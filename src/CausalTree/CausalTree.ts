@@ -1,4 +1,4 @@
-import CTNode from "./CTNode.ts";
+import CTNode from "./CTNode";
 
 class CasualTree {
     /* 
@@ -19,4 +19,3 @@ class CasualTree {
 }
 
 export default CasualTree;
-
