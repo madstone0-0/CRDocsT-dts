@@ -1,12 +1,12 @@
 {
   "name": "@cr_docs_t/dts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "publish": "npm run build && npm publish --access public"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": [
