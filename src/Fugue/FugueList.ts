@@ -1,5 +1,5 @@
 import FNode from "./FNode";
-import { StringTotalOrder, UniquelyDenseTotalOrder } from "./utils";
+import UniquelyDenseTotalOrder from "../TotalOrder/UniquelyDenseTotalOrder";
 
 /**
  * A Fugue List CRDT, with insert and delete operations

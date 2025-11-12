@@ -1,31 +1,6 @@
-/**
- * Helper interface for sorting and creating unique immutable positions,
- * suitable for use in a List CRDT. Taken from mattweidner.com/2022/10/21/basic-list-crdt.html
- *
- * @type P The type of positions. Treated as immutable.
- */
-export interface UniquelyDenseTotalOrder<P> {
-    /**
-     * Usual compare function for sorts: returns negative if a < b in
-     * their sort order, positive if a > b.
-     */
-    compare(a: P, b: P): number;
+import UniquelyDenseTotalOrder from "./UniquelyDenseTotalOrder";
 
-    /**
-     * Returns a globally unique new position c such that a < c < b.
-     *
-     * "Globally unique" means that the created position must be distinct
-     * from all other created positions, including ones created concurrently
-     * by other users.
-     *
-     * When a is undefined, it is treated as the start of the list, i.e.,
-     * this returns c such that c < b. Likewise, undefined b is treated
-     * as the end of the list.
-     */
-    createBetween(a?: P, b?: P): P;
-}
-
-export class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
+export default class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
     readonly replicaID: string;
     private counter = 0;
 
@@ -66,10 +41,4 @@ export class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
             return b.slice(0, -1) + "L" + uniqueStr + "R";
         }
     }
-}
-
-export function randomString(length: number = 10): string {
-    let res = new Array<string>(length);
-    for (let i = 0; i < length; i++) res[i] = String.fromCharCode(97 + Math.floor(Math.random() * 26));
-    return res.join("");
 }

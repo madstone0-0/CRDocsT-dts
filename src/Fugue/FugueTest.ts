@@ -1,5 +1,6 @@
 import FugueList from "./FugueList";
-import { randomString, StringTotalOrder } from "./utils";
+import { randomString } from "../utils/index";
+import StringTotalOrder from "../TotalOrder/StringTotalOrder";
 
 const test1 = new FugueList(new StringTotalOrder(randomString(5)));
 const test2 = new FugueList(new StringTotalOrder(randomString(5)));
