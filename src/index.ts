@@ -2,7 +2,7 @@ import FugueList from "./Fugue/FugueList";
 import CausalTree from "./CausalTree/CausalTree";
 import UniquelyDenseTotalOrder from "./TotalOrder/UniquelyDenseTotalOrder";
 import StringTotalOrder from "./TotalOrder/StringTotalOrder";
-import { FugueMessage } from "./types/Message";
+import { FugueMessage, Operation, Data } from "./types/Message";
 import { FugueState } from "./types/Fugue";
 
 export {
@@ -16,4 +16,6 @@ export {
     // Types
     FugueMessage,
     FugueState,
+    Operation,
+    Data,
 };
