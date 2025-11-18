@@ -7,7 +7,7 @@ export type Position = number;
 
 export type Data = string;
 
-export interface FugueMessage<P> {
+export interface FugueMessage {
     operation: Operation;
     position: number;
     data: Data | null;

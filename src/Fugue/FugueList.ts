@@ -17,7 +17,7 @@ class FugueList<P> {
         this.ws = ws;
     }
 
-    private propagate(msg: FugueMessage<P>) {
+    private propagate(msg: FugueMessage) {
         if (!this.ws) return;
 
         this.ws.send(JSON.stringify(msg));
@@ -102,7 +102,7 @@ class FugueList<P> {
         return res.toString();
     }
 
-    effect(msg: FugueMessage<P>) {
+    effect(msg: FugueMessage) {
         // On
         const { operation, data, position } = msg;
         switch (operation) {
