@@ -1,16 +1,26 @@
 import FNode from "./FNode";
+import { FugueState } from "../types/Fugue";
 import UniquelyDenseTotalOrder from "../TotalOrder/UniquelyDenseTotalOrder";
+import { FugueMessage, Operation } from "../types/Message";
 
 /**
  * A Fugue List CRDT, with insert and delete operations
  */
 class FugueList<P> {
-    state: FNode<P>[][] = [];
+    state: FugueState<P> = [];
     totalOrder: UniquelyDenseTotalOrder<P>;
     positionCounter = 0;
+    ws: WebSocket | null;
 
-    constructor(totalOrder: UniquelyDenseTotalOrder<P>) {
+    constructor(totalOrder: UniquelyDenseTotalOrder<P>, ws: WebSocket | null) {
         this.totalOrder = totalOrder;
+        this.ws = ws;
+    }
+
+    private propagate(msg: FugueMessage<P>) {
+        if (!this.ws) return;
+
+        this.ws.send(JSON.stringify(msg));
     }
 
     /**
@@ -47,6 +57,13 @@ class FugueList<P> {
                 atIndex.push(new FNode<P>(this.totalOrder.createBetween(a.position), value));
             }
         }
+
+        // Send to replicas
+        this.propagate({
+            operation: Operation.INSERT,
+            position: index,
+            data: value,
+        });
     }
 
     /**
@@ -60,6 +77,13 @@ class FugueList<P> {
             i++;
         }
         this.state.pop();
+
+        // Send to replicas
+        this.propagate({
+            operation: Operation.DELETE,
+            position: index,
+            data: null,
+        });
     }
 
     observe(): string {
@@ -76,6 +100,21 @@ class FugueList<P> {
         }
 
         return res.toString();
+    }
+
+    effect(msg: FugueMessage<P>) {
+        // On
+        const { operation, data, position } = msg;
+        switch (operation) {
+            // Operation.INSERT -> insert
+            case Operation.INSERT:
+                if (!data) throw Error("Data is required for Operation.INSERT");
+                this.insert(position, data);
+            // Operation.DELETE -> delete
+            case Operation.DELETE:
+                this.delete(position);
+        }
+        throw Error("Invalid operation");
     }
 }
 
