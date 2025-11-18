@@ -110,9 +110,11 @@ class FugueList<P> {
             case Operation.INSERT:
                 if (!data) throw Error("Data is required for Operation.INSERT");
                 this.insert(position, data);
+                break;
             // Operation.DELETE -> delete
             case Operation.DELETE:
                 this.delete(position);
+                break;
         }
         throw Error("Invalid operation");
     }
