@@ -1,6 +1,8 @@
 import { UniquelyDenseTotalOrder } from "./UniquelyDenseTotalOrder";
 
-export class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
+export type StringPosition = string;
+
+export class StringTotalOrder implements UniquelyDenseTotalOrder<StringPosition> {
     readonly replicaID: string;
     private counter = 0;
 
@@ -27,7 +29,7 @@ export class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
 
         // If node is the first position at that index
         if (!a) {
-            return b + uniqueStr + "R";
+            return b!.slice(0, -1) + "L" + uniqueStr + "R";
         }
 
         // If node is the last position at that index
@@ -35,7 +37,7 @@ export class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
             return a + uniqueStr + "R";
         }
 
-        const isAPrefixOfB = b.substring(0, a.length).localeCompare(a);
+        const isAPrefixOfB = b.startsWith(a);
         // If a is not a prefix of b append a globally unique new string to a and return that +R
         if (!isAPrefixOfB) {
             return a + uniqueStr + "R";

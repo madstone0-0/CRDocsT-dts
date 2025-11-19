@@ -3,13 +3,12 @@ export enum Operation {
     DELETE,
 }
 
-export type Position = number;
 
 export type Data = string;
 
-export interface FugueMessage {
+export interface FugueMessage<P> {
     replicaId: string;
     operation: Operation;
-    position: number;
+    position: P;
     data: Data | null;
 }
