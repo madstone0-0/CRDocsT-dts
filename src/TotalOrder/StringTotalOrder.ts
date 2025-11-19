@@ -1,8 +1,12 @@
-import UniquelyDenseTotalOrder from "./UniquelyDenseTotalOrder";
+import { UniquelyDenseTotalOrder } from "./UniquelyDenseTotalOrder";
 
-export default class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
+export class StringTotalOrder implements UniquelyDenseTotalOrder<string> {
     readonly replicaID: string;
     private counter = 0;
+
+    getReplicaId(): string {
+        return this.replicaID;
+    }
 
     compare(a: string, b: string): number {
         return a.localeCompare(b);

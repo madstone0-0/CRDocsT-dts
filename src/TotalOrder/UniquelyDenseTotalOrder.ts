@@ -4,7 +4,9 @@
  *
  * @type P The type of positions. Treated as immutable.
  */
-export default interface UniquelyDenseTotalOrder<P> {
+export interface UniquelyDenseTotalOrder<P> {
+    getReplicaId(): string;
+
     /**
      * Usual compare function for sorts: returns negative if a < b in
      * their sort order, positive if a > b.

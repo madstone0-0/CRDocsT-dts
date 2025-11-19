@@ -1,4 +1,4 @@
-class FNode<P> {
+export class FNode<P> {
     value?: string;
     position: P;
 
@@ -7,5 +7,3 @@ class FNode<P> {
         this.position = position;
     }
 }
-
-export default FNode;

@@ -1,6 +1,6 @@
-import CTNode from "./CTNode";
+import { CTNode } from "./CTNode";
 
-class CasualTree {
+export class CasualTree {
     /* 
     This is the fug crdt
     It is a tree
@@ -17,5 +17,3 @@ class CasualTree {
         this.root = root;
     }
 }
-
-export default CasualTree;

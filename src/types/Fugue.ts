@@ -1,5 +1,3 @@
-import FNode from "../Fugue/FNode";
+import { FNode } from "../Fugue/FNode";
 
-export type FugueState<P> = FNode<P>[][]
-
-
+export type FugueState<P> = FNode<P>[][];

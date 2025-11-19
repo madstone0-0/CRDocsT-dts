@@ -1,21 +1,7 @@
-import FugueList from "./Fugue/FugueList";
-import CausalTree from "./CausalTree/CausalTree";
-import UniquelyDenseTotalOrder from "./TotalOrder/UniquelyDenseTotalOrder";
-import StringTotalOrder from "./TotalOrder/StringTotalOrder";
-import { FugueMessage, Operation, Data } from "./types/Message";
-import { FugueState } from "./types/Fugue";
+export * from "./Fugue/FugueList";
+export * from "./CausalTree/CausalTree";
 
-export {
-    // Data Types
-    FugueList,
-    CausalTree,
-    // Total Orders
-    UniquelyDenseTotalOrder,
-    StringTotalOrder,
-    // Utilities
-    // Types
-    FugueMessage,
-    FugueState,
-    Operation,
-    Data,
-};
+export * from "./TotalOrder/UniquelyDenseTotalOrder";
+export * from "./TotalOrder/StringTotalOrder";
+export * from "./types/Message";
+export * from "./types/Fugue";

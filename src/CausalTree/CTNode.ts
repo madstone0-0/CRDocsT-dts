@@ -1,4 +1,4 @@
-class CTNode {
+export class CTNode {
     uid: string; //userId @ lamport timestamp
     character?: string;
     cause?: CTNode; //the causal prior?
@@ -7,6 +7,3 @@ class CTNode {
         this.uid = uid;
     }
 }
-
-export default CTNode;
-

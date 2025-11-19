@@ -1,12 +1,12 @@
-import FNode from "./FNode";
+import { FNode } from "./FNode";
 import { FugueState } from "../types/Fugue";
-import UniquelyDenseTotalOrder from "../TotalOrder/UniquelyDenseTotalOrder";
+import { UniquelyDenseTotalOrder } from "../TotalOrder/UniquelyDenseTotalOrder";
 import { FugueMessage, Operation } from "../types/Message";
 
 /**
  * A Fugue List CRDT, with insert and delete operations
  */
-class FugueList<P> {
+export class FugueList<P> {
     state: FugueState<P> = [];
     totalOrder: UniquelyDenseTotalOrder<P>;
     positionCounter = 0;
@@ -60,6 +60,7 @@ class FugueList<P> {
 
         // Send to replicas
         this.propagate({
+            replicaId: this.totalOrder.getReplicaId(),
             operation: Operation.INSERT,
             position: index,
             data: value,
@@ -80,6 +81,7 @@ class FugueList<P> {
 
         // Send to replicas
         this.propagate({
+            replicaId: this.totalOrder.getReplicaId(),
             operation: Operation.DELETE,
             position: index,
             data: null,
@@ -104,20 +106,19 @@ class FugueList<P> {
 
     effect(msg: FugueMessage) {
         // On
-        const { operation, data, position } = msg;
+        console.log({ msg });
+        const { replicaId, operation, data, position } = msg;
+        if (replicaId == this.totalOrder.getReplicaId()) return;
+
         switch (operation) {
             // Operation.INSERT -> insert
             case Operation.INSERT:
                 if (!data) throw Error("Data is required for Operation.INSERT");
-                this.insert(position, data);
-                break;
+                return this.insert(position, data);
             // Operation.DELETE -> delete
             case Operation.DELETE:
-                this.delete(position);
-                break;
+                return this.delete(position);
         }
         throw Error("Invalid operation");
     }
 }
-
-export default FugueList;
