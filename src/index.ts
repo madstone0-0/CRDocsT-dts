@@ -1,4 +1,7 @@
-import FugueList from "./Fugue/FugueList";
-import CausalTree from "./CausalTree/CausalTree";
+export * from "./Fugue/FugueList";
+export * from "./CausalTree/CausalTree";
 
-export { FugueList, CausalTree };
+export * from "./TotalOrder/UniquelyDenseTotalOrder";
+export * from "./TotalOrder/StringTotalOrder";
+export * from "./types/Message";
+export * from "./types/Fugue";
