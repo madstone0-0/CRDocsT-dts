@@ -1,7 +1,7 @@
-export * from "./Fugue/FugueList";
-export * from "./CausalTree/CausalTree";
+export * from "./Fugue/FugueList.js";
+export * from "./CausalTree/CausalTree.js";
 
-export * from "./TotalOrder/UniquelyDenseTotalOrder";
-export * from "./TotalOrder/StringTotalOrder";
-export * from "./types/Message";
-export * from "./types/Fugue";
+export * from "./TotalOrder/UniquelyDenseTotalOrder.js";
+export * from "./TotalOrder/StringTotalOrder.js";
+export * from "./types/Message.js";
+export * from "./types/Fugue.js";

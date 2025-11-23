@@ -1,7 +1,7 @@
-import { FNode } from "./FNode";
-import { FugueState } from "../types/Fugue";
-import { UniquelyDenseTotalOrder } from "../TotalOrder/UniquelyDenseTotalOrder";
-import { FugueMessage, Operation } from "../types/Message";
+import { FNode } from "./FNode.js";
+import { FugueState } from "../types/Fugue.js";
+import { UniquelyDenseTotalOrder } from "../TotalOrder/UniquelyDenseTotalOrder.js";
+import { FugueMessage, Operation } from "../types/Message.js";
 
 /**
  * A Fugue List CRDT, with insert and delete operations

@@ -1,4 +1,4 @@
-import { UniquelyDenseTotalOrder } from "./UniquelyDenseTotalOrder";
+import { UniquelyDenseTotalOrder } from "./UniquelyDenseTotalOrder.js";
 
 export type StringPosition = string;
 

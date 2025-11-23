@@ -1,4 +1,4 @@
-import { CTNode } from "./CTNode";
+import { CTNode } from "./CTNode.js";
 
 export class CasualTree {
     /* 

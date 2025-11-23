@@ -1,11 +1,10 @@
-import { FugueState } from "./Fugue";
+import { FugueState } from "./Fugue.js";
 
 export enum Operation {
     INSERT,
     DELETE,
-    JOIN
+    JOIN,
 }
-
 
 export type Data = string;
 
@@ -17,5 +16,5 @@ export interface FugueMessage<P> {
 }
 
 export interface FugueJoinMessage<P> {
-    state: FugueState<P>
+    state: FugueState<P>;
 }
